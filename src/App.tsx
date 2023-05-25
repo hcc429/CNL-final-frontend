@@ -1,7 +1,26 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import NavBar from "./components/NavBar";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
+import StudentList from "./pages/StudentList";
 
 function App() {
-	return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+	return (
+		<>
+			<Router>
+				<NavBar />
+				<div id="body">
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/studentlist" element={<StudentList />} />
+						<Route path="*" element={<NotFound />} />
+					</Routes>
+				</div>
+			</Router>
+		</>
+	);
 }
 
 export default App;

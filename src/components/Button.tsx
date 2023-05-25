@@ -1,0 +1,7 @@
+export default function Button(): JSX.Element {
+	return (
+		<div>
+			<button>hi</button>
+		</div>
+	);
+}
