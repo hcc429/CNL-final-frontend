@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
-// import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
+import LogoutBtn from "./LogoutBtn";
+import { navList } from "../configs/navlist";
 
 export default function NavBar() {
-	// const { auth, userData } = useAuth();
+	const auth = useAuth();
+
 	const NavItem = (props) => {
 		return (
 			<div className="">
@@ -12,26 +15,20 @@ export default function NavBar() {
 			</div>
 		);
 	};
-	const navList = [
-		{
-			text: "Home",
-			url: "/",
-		},
-		{
-			text: "Student",
-			url: "/studentlist",
-		},
-	];
 
 	return (
 		<nav className="">
 			<div className="">
-				{navList.map((item) => (
-					<NavItem key={item.url} url={item.url}>
-						{item.text}
-					</NavItem>
-				))}
-				<button>logout</button>
+				{auth ? (
+					navList.map((item) => (
+						<NavItem key={item.url} url={item.url}>
+							{item.text}
+						</NavItem>
+					))
+				) : (
+					<div>hi</div>
+				)}
+				<LogoutBtn />
 			</div>
 		</nav>
 	);
