@@ -6,6 +6,6 @@ export interface inputType extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input: React.FC<inputType> = React.forwardRef((inputProps, ref) => {
-	return <input className="border-2 border-gray-500 rounded-md" ref={ref} {...inputProps} />;
+	return <input className="border-2 border-gray-500 rounded-md w-full p-1 pl-2 text-xl" ref={ref} {...inputProps} />;
 });
 export default Input;

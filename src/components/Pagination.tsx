@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { Dispatch, SetStateAction } from "react";
 import studentType from "../pages/StudentList";
-
+// don't change 
 export interface paginationType {
 	data: studentType[];
 	offset: number;
