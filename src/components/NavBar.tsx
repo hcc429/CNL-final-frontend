@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import LogoutBtn from "./LogoutBtn";
-import { navList } from "../configs/navlist";
-import logo from "../assets/logo.png"
+import { navList } from "../configs/navList";
+import logo from "../assets/logo.png";
+interface navItemType {
+	url: string;
+	children: string;
+}
 
 export default function NavBar() {
-	const auth = useAuth();
+	const auth = useAuth(false);
 
-	const NavItem = (props) => {
+	const NavItem = (props: navItemType) => {
 		return (
 			<div className="text-white m-4">
 				<Link to={props.url} style={{ textDecoration: "none" }} className="link">
@@ -17,27 +21,31 @@ export default function NavBar() {
 		);
 	};
 
+	const Navlist = () => {
+		if (!auth) {
+			return null;
+		}
+		return (
+			<>
+				{navList.map((item) => (
+					<NavItem key={item.url} url={item.url}>
+						{item.text}
+					</NavItem>
+				))}
+				<LogoutBtn />
+			</>
+		);
+	};
+
 	return (
 		<nav className="">
-			<div className="flex flex-row bg-dark-blue items-center gap-4">
+			<div className="flex flex-row bg-primary items-center gap-4">
 				<a href="/">
-					<img src={logo} width="200">
-					</img>
+					<img src={logo} width="200"></img>
 				</a>
 				<div className="m-auto"></div>
 				<div className="flex flex-row">
-					{auth ? (
-						<>
-							{navList.map((item) => (
-								<NavItem key={item.url} url={item.url}>
-									{item.text}
-								</NavItem>
-							))}
-							<LogoutBtn />
-						</>
-					) : (
-						<div>hi</div>
-					)}
+					<Navlist />
 				</div>
 			</div>
 		</nav>

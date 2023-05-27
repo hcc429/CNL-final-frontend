@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { Dispatch, SetStateAction } from "react";
 import studentType from "../pages/StudentList";
-// don't change 
+// don't change
 export interface paginationType {
 	data: studentType[];
 	offset: number;
@@ -37,7 +37,7 @@ export default function Pagination(props: PaginationPropsType): JSX.Element {
 			};
 		});
 	}, [pagination.numberPerPage, pagination.offset, pagination.data]);
-
+	// Checkout index.css for the "pagination a"
 	return (
 		<ReactPaginate
 			previousLabel={"<<"}
@@ -48,8 +48,10 @@ export default function Pagination(props: PaginationPropsType): JSX.Element {
 			marginPagesDisplayed={1}
 			pageRangeDisplayed={2}
 			onPageChange={handlePageClick}
-			containerClassName={"pagination"}
-			activeClassName={"pagination__link--active"}
+			containerClassName={
+				"pagination w-fit flex items-center text-sm h-10 list-none justify-center m-auto"
+			}
+			activeClassName={"pagination__link--active text-lg"}
 			disabledClassName={"pagination__link--disabled"}
 		/>
 	);

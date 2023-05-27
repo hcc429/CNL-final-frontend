@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { authType } from "../contexts/Auth";
 import Cookies from "js-cookie";
 
-export default function useAuth(): boolean {
+export default function useAuth(protect?: boolean): boolean {
 	const userState: authType = useContext(UserContext);
 	const navigate = useNavigate();
+	const shouldProtect = protect ?? true;
 	useEffect(() => {
-		if (!userState.auth && !Cookies.get("token")) {
+		if (shouldProtect && !userState.auth && !Cookies.get("token")) {
 			navigate("/login");
 		}
 	}, []);

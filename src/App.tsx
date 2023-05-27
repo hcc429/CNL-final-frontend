@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import StudentList from "./pages/StudentList";
+import Register from "./pages/Register";
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
 						<Route path="/studentlist" element={<StudentList />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>

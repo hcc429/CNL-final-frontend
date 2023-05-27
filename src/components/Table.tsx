@@ -15,14 +15,16 @@ export default function Table(props: TableType): JSX.Element {
 		data,
 	});
 	return (
-		<div className="table-Container">
-			<div className="table">
+		<div className="border-2 border-slate-500 align-center w-fit m-auto mt-10 h-60 rounded-lg">
+			<div className="w-fit truncate m-auto rounded-lg">
 				<table {...getTableProps()}>
-					<thead>
+					<thead className="text-center text-primary">
 						{headerGroups.map((headerGroup) => (
 							<tr {...headerGroup.getHeaderGroupProps()}>
 								{headerGroup.headers.map((column) => (
-									<th {...column.getHeaderProps()}>{column.render("Header")}</th>
+									<th className="p-4 text-left" {...column.getHeaderProps()}>
+										{column.render("Header")}
+									</th>
 								))}
 							</tr>
 						))}
@@ -31,9 +33,11 @@ export default function Table(props: TableType): JSX.Element {
 						{rows.map((row) => {
 							prepareRow(row);
 							return (
-								<tr {...row.getRowProps()}>
+								<tr className="hover:bg-light-gray" {...row.getRowProps()}>
 									{row.cells.map((cell) => (
-										<td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+										<td className="p-1 text-gray" {...cell.getCellProps()}>
+											{cell.render("Cell")}
+										</td>
 									))}
 								</tr>
 							);

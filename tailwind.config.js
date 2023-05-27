@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultColors = require('tailwindcss/colors');
 export default {
   content: [
     "./index.html",
@@ -6,8 +7,13 @@ export default {
   ],
   theme: {
     colors: {
-      'dark-blue': '#27374D',
-      "white": '#FFFFFF'
+      ...defaultColors,
+      "transparent": 'transparent',
+      "current": 'currentColor',
+      "primary": '#27374D',
+      'secondary': '#82A0BC',
+      "white": '#FFFFFF',
+      "light-gray": "#f3f4f6",
     },
     extend: {},
   },
