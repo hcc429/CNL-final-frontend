@@ -1,5 +1,5 @@
 interface titleType {
-	chiildren: string;
+	children: string;
 	className?: string;
 }
 

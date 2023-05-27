@@ -11,7 +11,7 @@ export default function SettingForm(): JSX.Element {
 	const courseKetGeneratorRef = useRef<HTMLInputElement | null>();
 	const rollCallDurationRef = useRef<HTMLInputElement | null>();
 	return (
-		<div className="flex w-4/12 m-4 flex-col justify-center items-center border-r-2 gap-y-2">
+		<div className="flex w-4/12 m-4 flex-col justify-center items-center  border-r-2 gap-y-2 ">
 			<Title className="text-3xl">Roll Call Settings</Title>
 			<form
 				onSubmit={(e) => {
