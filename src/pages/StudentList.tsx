@@ -9,7 +9,7 @@ export default function StudentList(): JSX.Element {
 	useAuth();
 	const [pagination, setPagination] = usePagination(studentList);
 	return (
-		<div className="flex">
+		<div className="flex h-80v">
 			<SettingForm />
 			<div className="m-auto w-11/12">
 				<Table data={pagination.currentData} columns={studentListConfig} />

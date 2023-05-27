@@ -38,7 +38,7 @@ export default function NavBar() {
 	};
 
 	return (
-		<nav className="">
+		<nav className="sticky top-0 z-50">
 			<div className="flex flex-row bg-primary items-center gap-4">
 				<a href="/">
 					<img src={logo} width="200"></img>
