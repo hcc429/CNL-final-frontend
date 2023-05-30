@@ -3,28 +3,36 @@ import Cookies from "js-cookie";
 
 // not test yet
 export const startRollcall = (courseKey: string, duration: string) => {
+	const duInSec = parseInt(duration);
+	const token = Cookies.get("token");
 	return fetch(serverUrl + "/rollcall", {
 		method: "POST",
 		body: JSON.stringify({
-			courseKey: courseKey,
-			startTime: new Date().toDateString(),
-			duration: duration,
+			Coursekey: courseKey,
+			StartTime: Date.now().toString(),
+			EndTime: (Date.now() + duInSec).toString(),
+		}),
+		headers: new Headers({
+			Authorization: token,
 		}),
 	})
 		.then((res) => {
-			return res;
+			if (res.status !== 200) {
+				throw new Error(res.status);
+			}
+			return res.json();
 		})
 		.catch((err) => {
 			return err;
 		});
 };
 
-export const getRollcallResult = () => {
+export const getRollcallResult = (courseKey: string) => {
 	const token = Cookies.get("token");
-	return fetch(serverUrl + "/rollcall", {
+	return fetch(serverUrl + `/rollcall?courseKey=${courseKey}`, {
 		method: "GET",
 		headers: new Headers({
-			Authorization: "token " + token,
+			Authorization: "Bearer " + token,
 		}),
 	})
 		.then((res) => {

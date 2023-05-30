@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useTable } from "react-table";
-import studentType from "../pages/StudentList";
+import studentType from "../configs/stuColumn";
 
 interface TableType {
 	data: studentType[];

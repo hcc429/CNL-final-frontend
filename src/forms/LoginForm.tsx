@@ -12,14 +12,15 @@ export default function LoginForm(): JSX.Element {
 	return (
 		<div className="flex flex-col border p-10 w-100 rounded-2xl h-100 ml-20">
 			<form
-				onSubmit={() => {
-					// const token = await login();
-					// if (token) {
-					// 	Cookies.set("token", token, { expires: 7, path: "" });
-					// 	navigate("/");
-					// }
-					document.cookie = "token=123";
-					navigate("/");
+				onSubmit={async (e) => {
+					e.preventDefault();
+					const token = await login(acc.current?.value, pwd.current?.value);
+					if (token) {
+						Cookies.set("token", token, { expires: 7, path: "" });
+						navigate("/");
+					} else {
+						window.alert("Login Failed");
+					}
 					window.location.reload();
 				}}
 			>

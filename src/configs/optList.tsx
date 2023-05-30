@@ -4,15 +4,15 @@ interface optionType {
 }
 export const optList: optionType[] = [
 	{
-		value: "5",
+		value: "300",
 		opt: "5 分鐘",
 	},
 	{
-		value: "10",
+		value: "600",
 		opt: "10 分鐘",
 	},
 	{
-		value: "15",
+		value: "900",
 		opt: "15 分鐘",
 	},
 ];

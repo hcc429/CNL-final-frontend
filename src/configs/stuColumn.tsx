@@ -4,9 +4,9 @@ type columnType = {
 };
 
 export const studentListConfig: columnType[] = [
-	{ Header: "Student ID", accessor: "id" },
-	{ Header: "Student Name", accessor: "name" },
-	{ Header: "Login Timestamp", accessor: "timeStamp" },
+	{ Header: "Student ID", accessor: "StudentId" },
+	{ Header: "Student Name", accessor: "Name" },
+	{ Header: "Login Timestamp", accessor: "CheckinTime" },
 ];
 
 type studentType = {
