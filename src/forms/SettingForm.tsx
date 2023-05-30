@@ -2,7 +2,7 @@ import Title from "../components/Title";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import Select from "../components/Select";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { startRollcall } from "../utils/rollcall";
 import Cookies from "js-Cookie";
 
@@ -11,6 +11,13 @@ export default function SettingForm(): JSX.Element {
 	const courseNameRef = useRef<HTMLInputElement | null>();
 	const courseKeyGeneratorRef = useRef<HTMLInputElement | null>();
 	const rollCallDurationRef = useRef<HTMLInputElement | null>();
+	useEffect(() => {
+		const courseName = Cookies.get("courseName");
+		if (courseName) {
+			setDisabled(true);
+			courseNameRef.current.value = courseName;
+		}
+	}, []);
 	return (
 		<div className="flex w-1/2 m-4 flex-col justify-center items-center border-r-2 gap-y-2">
 			<Title className="text-2xl">Roll Call Settings</Title>
@@ -19,19 +26,19 @@ export default function SettingForm(): JSX.Element {
 				onSubmit={async (e) => {
 					e.preventDefault();
 					if (disabled == false) {
+						const cookieSetting = {
+							expires: 1,
+							path: "",
+						};
 						const res = await startRollcall(
 							courseKeyGeneratorRef.current?.value,
 							rollCallDurationRef.current?.value
 						);
-						console.log(res);
-						Cookies.set("courseName", courseNameRef.current?.value, {
-							expires: 7,
-							path: "",
-						});
-						Cookies.set("courseKey", res, {
-							expires: 7,
-							path: "",
-						});
+						Cookies.set("courseName", courseNameRef.current?.value, cookieSetting);
+						Cookies.set("courseKey", res, cookieSetting);
+					} else {
+						Cookies.remove("courseName");
+						Cookies.remove("courseKey");
 					}
 					setDisabled((prev) => !prev);
 				}}

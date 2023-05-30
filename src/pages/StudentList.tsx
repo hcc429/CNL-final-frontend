@@ -2,38 +2,28 @@ import usePagination from "../hooks/usePagination";
 import useAuth from "../hooks/useAuth";
 import Pagination from "../components/Pagination";
 import Table from "../components/Table";
-import Button from "../components/Button";
-import Cookies from "js-cookie";
 import SettingForm from "../forms/SettingForm";
-import { useEffect, useState } from "react";
-import { studentListConfig, studentList } from "../configs/stuColumn";
+import { useState } from "react";
+import { studentListConfig } from "../configs/stuColumn";
 import { getRollcallResult } from "../utils/rollcall";
+import useCourse from "../hooks/useCourse";
 
 export default function StudentList(): JSX.Element {
 	useAuth();
 	const [pagination, setPagination] = usePagination([]);
-	const [courseName, setCourseName] = useState("1");
-	const [courseKey, setCourseKey] = useState("1");
-	useEffect(() => {
-		const newCourseName: string = Cookies.get("courseName");
-		const newCourseKey: string = Cookies.get("courseKey");
-		setCourseKey(newCourseKey);
-		setCourseName(newCourseName);
-	}, [])
+	const [changeCourse, setChangeCourse] = useState<boolean>(false);
+	const [courseName, courseKey] = useCourse(changeCourse);
+
 	return (
 		<div className="flex h-80v">
 			<SettingForm />
 			<div className="w-9/12 m-auto border-2">
 				<div className="flex w-fit m-auto w-1/2 items-center">
 					<button
-						className="pr-2 pl-2 whitespace-nowrap w-fit border-2 m-5"
+						className="pr-2 pl-2 whitespace-nowrap w-fit border-2 m-5 rounded-md"
 						onClick={async () => {
-							const newCourseName: string = Cookies.get("courseName");
-							const newCourseKey: string = Cookies.get("courseKey");
 							const studentList = await getRollcallResult(newCourseKey);
-							console.log(studentList);
-							setCourseKey(newCourseKey);
-							setCourseName(newCourseName);
+							setChangeCourse((prevState) => !prevState);
 							setPagination((prevState) => {
 								return {
 									...prevState,
@@ -42,7 +32,7 @@ export default function StudentList(): JSX.Element {
 							});
 						}}
 					>
-						Refresh Student List
+						Refresh
 					</button>
 					<div className="pr-2 pl-2 whitespace-nowrap w-fit m-2">
 						course-key: {courseKey}

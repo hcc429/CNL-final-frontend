@@ -32,7 +32,7 @@ export const getRollcallResult = (courseKey: string) => {
 	return fetch(serverUrl + `/rollcall?courseKey=${courseKey}`, {
 		method: "GET",
 		headers: new Headers({
-			Authorization: "Bearer " + token,
+			Authorization: token,
 		}),
 	})
 		.then((res) => {
