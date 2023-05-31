@@ -1,1 +1,1 @@
-export const serverUrl = "http://140.112.29.203:8000";
+export const serverUrl = "http://zxc.server.randomcat.io:8000";

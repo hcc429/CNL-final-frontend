@@ -36,7 +36,7 @@ export const register = (account: string, password: string) => {
 		})
 		.catch((err) => {
 			console.log(err);
-			return err;
+			return 0;
 		});
 };
 
