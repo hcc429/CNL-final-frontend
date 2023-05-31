@@ -22,7 +22,8 @@ export default function StudentList(): JSX.Element {
 					<button
 						className="pr-2 pl-2 whitespace-nowrap w-fit border-2 m-5 rounded-md"
 						onClick={async () => {
-							const studentList = await getRollcallResult(newCourseKey);
+							const studentList = await getRollcallResult(courseKey);
+							console.log(studentList);
 							setChangeCourse((prevState) => !prevState);
 							setPagination((prevState) => {
 								return {

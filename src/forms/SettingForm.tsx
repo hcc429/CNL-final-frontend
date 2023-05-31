@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import Select from "../components/Select";
 import { useEffect, useRef, useState } from "react";
 import { startRollcall } from "../utils/rollcall";
-import Cookies from "js-Cookie";
+import Cookies from "js-cookie";
 
 export default function SettingForm(): JSX.Element {
 	const [disabled, setDisabled] = useState<boolean>(false);
@@ -40,7 +40,7 @@ export default function SettingForm(): JSX.Element {
 						Cookies.remove("courseName");
 						Cookies.remove("courseKey");
 					}
-					setDisabled((prev) => !prev);
+					setDisabled((prevState) => !prevState);
 				}}
 			>
 				<Input

@@ -10,7 +10,7 @@ export const startRollcall = (courseKey: string, duration: string) => {
 		body: JSON.stringify({
 			Coursekey: courseKey,
 			StartTime: Date.now().toString(),
-			EndTime: (Date.now() + duInSec).toString(),
+			EndTime: (Date.now() + duInSec * 1000).toString(),
 		}),
 		headers: new Headers({
 			Authorization: token,
@@ -36,11 +36,7 @@ export const getRollcallResult = (courseKey: string) => {
 		}),
 	})
 		.then((res) => {
-			console.log(res);
 			return res.json();
-		})
-		.then((data) => {
-			return data;
 		})
 		.catch((err) => {
 			console.log(err.message);
